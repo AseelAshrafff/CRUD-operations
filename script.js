@@ -12,15 +12,20 @@ if (localStorage.getItem != null){
 products=JSON.parse(localStorage.getItem("Products")); 
 displayProduct(products);
 }
+//--------------------------------------------------------
 function addProduct(){
- var product={
- name:productName.value,
- price:productPrice.value,
- category:productCategory.value,
- description:productDescription.value,
- }  
+
+
+var product={
+name:productName.value,
+price:productPrice.value,
+category:productCategory.value,
+description:productDescription.value,
+} 
+console.log("Product Name:", productName.value); 
+// if(validateProductName()==true){
 if(mood==='create') {
-    products.push(product);
+products.push(product);
 }
 else{
 products[tmp]=product;
@@ -28,16 +33,22 @@ mood = 'create';
 }
 localStorage.setItem("Products", JSON.stringify(products));
 displayProduct();
- console.log(products);
- clearForm();
+console.log(products);
+clearForm();
 }
+// else{
+// console.log("validation error");
+// }
+// }
 //-----------------------------------------------------
-function clearForm(){
+ function clearForm(){
 productName.value="";
 productPrice.value="";
 productDescription.value="";
 productCategory.value="";
 }
+
+
 //-----------------------------------------------------
 
 function displayProduct(arr=products){
@@ -82,4 +93,12 @@ mood='update';
 tmp=i;
 }
 //-----------------------------------------------------------
-
+// var regex= /^[A-Z][a-z]{3,8}$/;
+// function validateProductName(){
+// if(regex.test(productName.value)==true){
+// return true;
+// }
+// else{
+// return false;
+// }
+// }
